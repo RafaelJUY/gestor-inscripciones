@@ -8,6 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon";
 import { MatSelectModule } from '@angular/material/select';
+import {MatButtonModule} from "@angular/material/button";
+import {ReactiveFormsModule} from "@angular/forms";
+import {AuthService} from "../core/services/auth.service";
+import {APP_CONFIG} from "../core/injection-tokens";
 
 
 
@@ -25,7 +29,22 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+    MatButtonModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: AuthService,
+      useClass: AuthService,
+    },
+    { //se puede borrar
+      provide: APP_CONFIG,
+      useValue: {
+        baseURL: "...",
+        version: "2.0"
+      }
+    }
+  ],
 })
 export class AuthModule { }

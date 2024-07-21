@@ -13,6 +13,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import {SharedModule} from "../../shared/shared.module";
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {SharedModule} from "../../shared/shared.module";
     ReactiveFormsModule,
     MatDatepickerModule,
     MatTableModule,
-    SharedModule
+    SharedModule,
+    MatProgressBarModule
   ]
 })
 export class StudentsModule { }

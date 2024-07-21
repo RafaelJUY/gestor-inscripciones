@@ -49,3 +49,9 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <!--TABLA FIN-->
+
+<!--BARRA DE CARGA INICIO-->
+<ng-container *ngIf="isLoading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-container>
+<!--BARRA DE CARGA FIN-->

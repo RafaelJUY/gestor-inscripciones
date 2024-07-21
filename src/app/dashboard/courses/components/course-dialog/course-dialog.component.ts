@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Course} from "../../interfaces/Course";
+import {ICourse} from "../../interfaces/ICourse";
 
 @Component({
   selector: 'app-course-dialog',
@@ -14,7 +14,7 @@ export class CourseDialogComponent {
   constructor(
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<CourseDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public editingCourse?: Course
+    @Inject(MAT_DIALOG_DATA) public editingCourse?: ICourse
   )
   {
     // matDialogRef = referencia al dialogo/modal actual.
