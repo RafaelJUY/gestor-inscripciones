@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {IStudent} from "./model/IStudent";
 import {StudentDialogComponent} from "./components/student-dialog/student-dialog.component";
 import {StudentsService} from "../../core/services/students.service";
+import {Student} from "./model/Student";
 
 @Component({
   selector: 'app-students',
@@ -40,7 +41,7 @@ export class StudentsComponent implements OnInit{
       next: (value) => {
         if(value){
           this.isLoading = true;
-          value['id'] = this.nextID();
+          // value['id'] = this.nextID();
           this.studentService.addStudents(value).subscribe({
             next: (students) => {
               this.dataSource = [...students];
