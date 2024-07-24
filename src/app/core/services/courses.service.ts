@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {ICourse} from "../../dashboard/courses/interfaces/ICourse";
+import {ICourse} from "../../features/dashboard/courses/interfaces/ICourse";
 
 @Injectable({
   providedIn:"root"

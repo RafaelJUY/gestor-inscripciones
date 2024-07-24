@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {IStudent} from "../../dashboard/students/model/IStudent";
-import {Student} from "../../dashboard/students/model/Student";
+import {IStudent} from "../../features/dashboard/students/model/IStudent";
+import {Student} from "../../features/dashboard/students/model/Student";
 
 @Injectable({
   providedIn: "root"

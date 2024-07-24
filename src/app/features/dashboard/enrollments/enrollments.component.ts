@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {EnrollmentsService} from "../../core/services/enrollments.service";
 import {IEnrollments} from "./model/IEnrollments";
 import {Subject} from "rxjs";
-import {NotifierService} from "../../core/services/notifier.service";
+import {EnrollmentsService} from "../../../core/services/enrollments.service";
+import {NotifierService} from "../../../core/services/notifier.service";
 
 @Component({
   selector: 'app-enrollments',

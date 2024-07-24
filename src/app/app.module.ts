@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { DashboardModule } from "./dashboard/dashboard.module";
-import { AuthModule } from "./auth/auth.module";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
+import {DashboardModule} from "./features/dashboard/dashboard.module";
+import {AuthModule} from "./features/auth/auth.module";
 
 @NgModule({
   declarations: [AppComponent],

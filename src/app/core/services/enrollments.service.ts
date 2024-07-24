@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {delay, Observable, of} from "rxjs";
-import {IEnrollments} from "../../dashboard/enrollments/model/IEnrollments";
+import {IEnrollments} from "../../features/dashboard/enrollments/model/IEnrollments";
 
 @Injectable({
   providedIn: "root"

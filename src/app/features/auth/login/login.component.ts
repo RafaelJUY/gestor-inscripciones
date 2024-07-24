@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
-import {AuthService} from "../../core/services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {APP_CONFIG} from "../../core/injection-tokens";
+import {AuthService} from "../../../core/services/auth.service";
+import {APP_CONFIG} from "../../../core/injection-tokens";
 
 @Component({
   selector: 'app-login',
