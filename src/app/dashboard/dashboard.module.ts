@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CoursesModule } from "./courses/courses.module";
 import { MatListModule } from '@angular/material/list';
 import { StudentsModule } from "./students/students.module";
+import {EnrollmentsModule} from "./enrollments/enrollments.module";
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -26,6 +27,7 @@ import { StudentsModule } from "./students/students.module";
     CoursesModule,
     MatListModule,
     StudentsModule,
+    EnrollmentsModule,
   ]
 })
 export class DashboardModule { }
