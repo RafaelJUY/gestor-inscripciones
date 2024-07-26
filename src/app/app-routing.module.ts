@@ -5,6 +5,8 @@ import {DashboardComponent} from "./features/dashboard/dashboard.component";
 import {CoursesComponent} from "./features/dashboard/courses/courses.component";
 import {EnrollmentsComponent} from "./features/dashboard/enrollments/enrollments.component";
 import {StudentsComponent} from "./features/dashboard/students/students.component";
+import {CourseDetailComponent} from "./features/dashboard/courses/components/course-detail/course-detail.component";
+import {HomeComponent} from "./features/dashboard/home/home.component";
 
 const routes: Routes = [
   {
@@ -16,8 +18,17 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
+        path: "home",
+        component: HomeComponent,
+      },
+      {
         path: "courses",
         component: CoursesComponent,
+      },
+      {
+        //Si necesito mas puedo concatenar "courses/:id/:name"
+        path: "courses/:id",
+        component: CourseDetailComponent,
       },
       {
         path: "students",
@@ -26,8 +37,17 @@ const routes: Routes = [
       {
         path: "enrollments",
         component: EnrollmentsComponent,
+      },
+      {
+        path: "**",
+        redirectTo: "/dashboard/home",
       }
     ]
+  },
+  {
+    path: "**", //cualquier ruta que no coincida con las otras
+    redirectTo: "auth",
+    // component: //podemos poder un componente de error 404
   }
 ];
 

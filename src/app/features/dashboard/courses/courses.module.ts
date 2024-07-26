@@ -13,12 +13,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 
 
 @NgModule({
   declarations: [
     CoursesComponent,
-    CourseDialogComponent
+    CourseDialogComponent,
+    CourseDetailComponent
   ],
   exports: [CoursesComponent],
   imports: [

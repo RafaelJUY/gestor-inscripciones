@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {ICourse} from "../../features/dashboard/courses/interfaces/ICourse";
 
 @Injectable({
@@ -36,6 +36,12 @@ export class CoursesService {
     })
   }
 
+  getCourseById(id: number): Observable<ICourse | undefined>{
+    return this.getCourses().pipe(
+      map((allCourses) => allCourses.find( (course) => course.id === id))
+    );
+  }
+
   addCourses(course : ICourse): Observable<ICourse[]>{
     this.MY_DATABASE.push(course);
     return this.getCourses();
@@ -51,6 +57,5 @@ export class CoursesService {
     this.MY_DATABASE = this.MY_DATABASE.filter( element => element.id != id );
     return this.getCourses();
   }
-
 
 }
