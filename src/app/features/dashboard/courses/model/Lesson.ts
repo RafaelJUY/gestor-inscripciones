@@ -2,18 +2,17 @@ export class Lesson{
   private _idCourse: number;
   private _date: Date;
   private _topic: string;
-  private _endTime: number;
   private _startTime: number;
+  private _endTime: number;
 
 
-  constructor(idCourse: number, date: Date, topic: string, endTime: number, startTime: number) {
+  constructor(idCourse: number, date: Date, topic: string, startTime: number, endTime: number) {
     this._idCourse = idCourse;
     this._date = date;
     this._topic = topic;
-    this._endTime = endTime;
     this._startTime = startTime;
+    this._endTime = endTime;
   }
-
 
   get idCourse(): number {
     return this._idCourse;

@@ -50,7 +50,7 @@ export class CoursesService {
   }
 
   /*RELACIONADO A LAS LECCIONES*/
-  addLessonByCourse(lesson: Lesson): ICourse{
+/*  addLessonByCourse(lesson: Lesson): ICourse{
     console.log(lesson)
     let course: ICourse;
     this.getCourseById(lesson.idCourse).subscribe({
@@ -60,6 +60,6 @@ export class CoursesService {
     course!.lessons.push(lesson);
     this.editCourseById(lesson.idCourse, course!);
     return course!;
-  }
+  }*/
 
 }

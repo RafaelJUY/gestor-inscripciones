@@ -6,14 +6,12 @@ export class Course implements ICourse{
   private _name: string;
   private _startDate: Date;
   private _endDate: Date;
-  private _lessons: Lesson[];
 
   constructor(id: number, name: string, startDate: Date, endDate: Date) {
     this._id = id;
     this._name = name;
     this._startDate = startDate;
     this._endDate = endDate;
-    this._lessons = [];
   }
 
   get id(): number {
@@ -46,13 +44,5 @@ export class Course implements ICourse{
 
   set endDate(value: Date) {
     this._endDate = value;
-  }
-
-  get lessons(): Lesson[] {
-    return this._lessons;
-  }
-
-  set lessons(value: Lesson[]) {
-    this._lessons = value;
   }
 }

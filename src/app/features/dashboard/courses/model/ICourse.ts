@@ -5,5 +5,5 @@ export interface ICourse {
   name: string;
   startDate: Date;
   endDate: Date;
-  lessons: Lesson[];
+  // lessons: Lesson[];
 }

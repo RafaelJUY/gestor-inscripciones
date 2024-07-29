@@ -48,7 +48,7 @@ export class CourseDialogComponent {
         name: course.name,
         startDate: course.startDate,
         endDate: course.endDate,
-        lessons: course.lessons,
+        // lessons: course.lessons,
       };
     }
     return course;
@@ -60,7 +60,5 @@ export class CourseDialogComponent {
     }else{
       alert("El courso no es valido")
     }
-
-
   }
 }
