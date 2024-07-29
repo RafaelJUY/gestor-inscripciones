@@ -13,12 +13,8 @@ export class StudentsComponent implements OnInit{
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', "actions"];
   dataSource: IStudent[] = [];
 
-  isLoading: boolean = false;
+  isLoading: boolean = false; // para mostrar animación de carga
   constructor(private matDialog: MatDialog, private studentService: StudentsService) {
-  }
-
-  private nextID():number{
-    return this.dataSource[this.dataSource.length - 1].id + 1;
   }
 
   ngOnInit(): void {

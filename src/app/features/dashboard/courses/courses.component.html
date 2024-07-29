@@ -1,40 +1,38 @@
+<h2 appTitleSize>Administración de Cursos</h2>
+
+<!--Crear Curso-->
 <button (click)="openDialog()" mat-flat-button>
   <mat-icon>add</mat-icon>Crear Curso
 </button>
 
-
-<p>El nombre del curso es: {{nombreCurso}}</p>
-
 <!--TABLA INICIO-->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
+  <!-- id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+  <!-- name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Nombre </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+  <!-- startDate Column -->
   <ng-container matColumnDef="startDate">
     <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
     <td mat-cell *matCellDef="let element"> {{ element.startDate | date: "dd/MM/YYYY"}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
+  <!-- endDate Column -->
   <ng-container matColumnDef="endDate">
     <th mat-header-cell *matHeaderCellDef> Fecha Fin </th>
     <td mat-cell *matCellDef="let element"> {{ element.endDate | date: "dd/MM/YYYY"}} </td>
   </ng-container>
 
+  <!-- actions Column -->
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Acciones </th>
     <td mat-cell *matCellDef="let element">

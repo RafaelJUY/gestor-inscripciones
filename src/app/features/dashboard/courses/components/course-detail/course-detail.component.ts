@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {CoursesService} from "../../../../../core/services/courses.service";
 import {Observable} from "rxjs";
-import {ICourse} from "../../interfaces/ICourse";
+import {ICourse} from "../../model/ICourse";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

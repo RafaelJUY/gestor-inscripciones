@@ -1,32 +1,18 @@
 import {Injectable} from '@angular/core';
 import {map, Observable} from "rxjs";
-import {ICourse} from "../../features/dashboard/courses/interfaces/ICourse";
+import {ICourse} from "../../features/dashboard/courses/model/ICourse";
+import {Course} from "../../features/dashboard/courses/model/Course";
+import {Lesson} from "../../features/dashboard/courses/model/Lesson";
 
 @Injectable({
   providedIn:"root"
 })
 export class CoursesService {
-
   private MY_DATABASE: ICourse[] = [
-    {
-      id: 1,
-      name: "Angular",
-      endDate: new Date(),
-      startDate: new Date(),
-    },
-    {
-      id: 2,
-      name: "JS",
-      endDate: new Date(),
-      startDate: new Date(),
-    },
-    {
-      id: 3,
-      name: "TS",
-      endDate: new Date(),
-      startDate: new Date(),
-    },
-  ];
+    new Course(1, "Angular", new Date(), new Date()),
+    new Course(2, "JS", new Date(), new Date()),
+    new Course(3, "TS", new Date(), new Date())
+  ]
   getCourses(): Observable<ICourse[]>{
     return new Observable((observer) => {
       setTimeout(()=>{
@@ -42,7 +28,12 @@ export class CoursesService {
     );
   }
 
+  private nextId(): number{
+    return Math.max(...this.MY_DATABASE.map(course => course.id)) + 1;
+  }
+
   addCourses(course : ICourse): Observable<ICourse[]>{
+    course.id = this.nextId();
     this.MY_DATABASE.push(course);
     return this.getCourses();
   }
@@ -56,6 +47,19 @@ export class CoursesService {
   deleteCourseById(id : number): Observable<ICourse[]>{
     this.MY_DATABASE = this.MY_DATABASE.filter( element => element.id != id );
     return this.getCourses();
+  }
+
+  /*RELACIONADO A LAS LECCIONES*/
+  addLessonByCourse(lesson: Lesson): ICourse{
+    console.log(lesson)
+    let course: ICourse;
+    this.getCourseById(lesson.idCourse).subscribe({
+      next: c => {course = c!},
+    });
+
+    course!.lessons.push(lesson);
+    this.editCourseById(lesson.idCourse, course!);
+    return course!;
   }
 
 }

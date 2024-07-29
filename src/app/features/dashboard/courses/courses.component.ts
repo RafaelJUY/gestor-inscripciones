@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {CourseDialogComponent} from "./components/course-dialog/course-dialog.component";
-import {ICourse} from "./interfaces/ICourse";
+import {ICourse} from "./model/ICourse";
 import {CoursesService} from "../../../core/services/courses.service";
 
 @Component({
@@ -10,12 +10,12 @@ import {CoursesService} from "../../../core/services/courses.service";
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent implements OnInit {
-  nombreCurso: string = "";
+  // nombreCurso: string = "";
 
   displayedColumns: string[] = ['id', 'name', 'startDate', 'endDate', "actions"];
   dataSource: ICourse[] = [];
 
-  isLoading: boolean = false;
+  isLoading: boolean = false; // para mostrar animación de carga
 
   constructor(private matDialog: MatDialog, private coursesService: CoursesService) {
   }
@@ -40,7 +40,15 @@ export class CoursesComponent implements OnInit {
     // .afterClosed().subscribe para recibir el valor del dialogo curse-dialog.component
     this.matDialog.open(CourseDialogComponent).afterClosed().subscribe({
       next: (value) => {
-        console.log("RECIBIMOS ESTE VALOR:", value);
+        if(value){
+          this.isLoading = true;
+
+          this.coursesService.addCourses(value). subscribe({
+            next: (courses) => {this.dataSource = [...courses]},
+            complete: () => {this.isLoading= false}
+          })
+        }
+/*        console.log("RECIBIMOS ESTE VALOR:", value);
 
         this.nombreCurso = value.name;
         // CREAR METODO PRIVADO PARA ASIGNAR ID DEL NUEVO ELEMENTO
@@ -54,7 +62,7 @@ export class CoursesComponent implements OnInit {
             this.isLoading = false;
           }
         })
-        // this.dataSource = [...this.dataSource, value];
+        // this.dataSource = [...this.dataSource, value];*/
       },
     });
   }

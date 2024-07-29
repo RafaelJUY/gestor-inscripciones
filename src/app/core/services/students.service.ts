@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {IStudent} from "../../features/dashboard/students/model/IStudent";
 import {Student} from "../../features/dashboard/students/model/Student";
 
@@ -19,6 +19,12 @@ export class StudentsService {
         observer.complete();
       }, 700);
     })
+  }
+
+  getCourseById(id: number): Observable<IStudent | undefined>{
+    return this.getStudents().pipe(
+      map( (allStudents) => allStudents.find( (student) => student.id === id ) )
+    );
   }
 
   private nextId(): number {

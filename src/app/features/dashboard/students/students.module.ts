@@ -14,12 +14,14 @@ import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {SharedModule} from "../../../shared/shared.module";
+import { StudentDetailComponent } from './components/student-detail/student-detail.component';
 
 
 @NgModule({
   declarations: [
     StudentsComponent,
-    StudentDialogComponent
+    StudentDialogComponent,
+    StudentDetailComponent
   ],
   exports: [StudentsComponent],
   imports: [

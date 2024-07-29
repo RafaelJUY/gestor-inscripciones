@@ -1,7 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ICourse} from "../../interfaces/ICourse";
+import {ICourse} from "../../model/ICourse";
+import {Course} from "../../model/Course";
 
 @Component({
   selector: 'app-course-dialog',
@@ -25,20 +26,39 @@ export class CourseDialogComponent {
       endDate: [],
     });
 
-    console.log("Se esta editando", this.editingCourse);
+    // console.log("Se esta editando", this.editingCourse);
 
     if(this.editingCourse){
       // Para que en el modal se muestre los datos del curso a modificar
+      this.editingCourse = this.convertCourseToFormCourseValues(this.editingCourse);
       this.curseForm.patchValue(this.editingCourse);
     }
   }
 
+  /** *
+   * Método para convertir los nombres de los atributos quitando el _ que tienen como prefijo.
+   * Los objetos fueron creados mediante una clase que tiene atributos privados, por eso tienen _ como prefijo.
+   * El formulario espera los nombres de los atributos sin los _.
+   * Sin este método los valores previos del objeto a modificar no se cargarían en el formulario.
+   */
+  private convertCourseToFormCourseValues(course: ICourse): ICourse{
+    if (course instanceof Course){
+      return {
+        id: course.id,
+        name: course.name,
+        startDate: course.startDate,
+        endDate: course.endDate,
+        lessons: course.lessons,
+      };
+    }
+    return course;
+  }
   onSubmit():void{ //Para cuando se de clic en guardar
     if(this.curseForm.valid){
-      console.log(this.curseForm.value);
+      // console.log(this.curseForm.value);
       this.matDialogRef.close(this.curseForm.value); //Para cerrar el modal, opcionalmente se puede enviar el valor del formulario.
     }else{
-      //mostrar error
+      alert("El courso no es valido")
     }
 
 

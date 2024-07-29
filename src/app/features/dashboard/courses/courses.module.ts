@@ -14,7 +14,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
-
+import {SharedModule} from "../../../shared/shared.module";
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { CourseDetailComponent } from './components/course-detail/course-detail.
     MatDatepickerModule,
     MatTableModule,
     MatProgressBarModule,
+    SharedModule,
+    MatCardModule,
   ]
 })
 export class CoursesModule { }

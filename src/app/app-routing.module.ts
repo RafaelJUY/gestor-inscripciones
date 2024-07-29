@@ -7,6 +7,7 @@ import {EnrollmentsComponent} from "./features/dashboard/enrollments/enrollments
 import {StudentsComponent} from "./features/dashboard/students/students.component";
 import {CourseDetailComponent} from "./features/dashboard/courses/components/course-detail/course-detail.component";
 import {HomeComponent} from "./features/dashboard/home/home.component";
+import {StudentDetailComponent} from "./features/dashboard/students/components/student-detail/student-detail.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: "students",
         component: StudentsComponent,
+      },
+      {
+        path: "students/:id",
+        component: StudentDetailComponent,
       },
       {
         path: "enrollments",
