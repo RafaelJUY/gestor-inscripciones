@@ -72,9 +72,6 @@ export class StudentsComponent implements OnInit{
               this.isLoading = false;
             },
           })
-          // this.dataSource = this.dataSource.map(
-          //   element => element.id === editingStudent.id ? {...value, id: editingStudent.id} : element
-          // );
         }
       }
     });

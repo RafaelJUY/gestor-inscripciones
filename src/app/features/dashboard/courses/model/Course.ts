@@ -1,5 +1,4 @@
 import {ICourse} from "./ICourse";
-import {Lesson} from "./Lesson";
 
 export class Course implements ICourse{
   private _id: number;

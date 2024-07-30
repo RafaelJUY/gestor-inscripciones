@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {map, Observable} from "rxjs";
 import {ICourse} from "../../features/dashboard/courses/model/ICourse";
 import {Course} from "../../features/dashboard/courses/model/Course";
-import {Lesson} from "../../features/dashboard/courses/model/Lesson";
 
 @Injectable({
   providedIn:"root"
@@ -48,18 +47,5 @@ export class CoursesService {
     this.MY_DATABASE = this.MY_DATABASE.filter( element => element.id != id );
     return this.getCourses();
   }
-
-  /*RELACIONADO A LAS LECCIONES*/
-/*  addLessonByCourse(lesson: Lesson): ICourse{
-    console.log(lesson)
-    let course: ICourse;
-    this.getCourseById(lesson.idCourse).subscribe({
-      next: c => {course = c!},
-    });
-
-    course!.lessons.push(lesson);
-    this.editCourseById(lesson.idCourse, course!);
-    return course!;
-  }*/
 
 }

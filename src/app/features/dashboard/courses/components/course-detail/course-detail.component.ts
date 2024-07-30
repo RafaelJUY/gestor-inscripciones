@@ -73,10 +73,6 @@ export class CourseDetailComponent implements OnInit{
       })
 
       this.curseForm.reset();
-
-      // let course = this.coursesService.addLessonByCourse(lesoon);
-      // console.log(course);
-      // this.matDialogRef.close(this.curseForm.value); //Para cerrar el modal, opcionalmente se puede enviar el valor del formulario.
     }else{
       alert("La Leccion no es valida")
     }

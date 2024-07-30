@@ -37,7 +37,6 @@ export class CoursesComponent implements OnInit {
   }
 
   openDialog(): void {
-    // .afterClosed().subscribe para recibir el valor del dialogo curse-dialog.component
     this.matDialog.open(CourseDialogComponent).afterClosed().subscribe({
       next: (value) => {
         if(value){
@@ -48,21 +47,6 @@ export class CoursesComponent implements OnInit {
             complete: () => {this.isLoading= false}
           })
         }
-/*        console.log("RECIBIMOS ESTE VALOR:", value);
-
-        this.nombreCurso = value.name;
-        // CREAR METODO PRIVADO PARA ASIGNAR ID DEL NUEVO ELEMENTO
-
-        this.isLoading = true;
-        this.coursesService.addCourses(value).subscribe({
-          next: (courses) => {
-            this.dataSource = [...courses];
-          },
-          complete: () => {
-            this.isLoading = false;
-          }
-        })
-        // this.dataSource = [...this.dataSource, value];*/
       },
     });
   }
@@ -80,9 +64,6 @@ export class CoursesComponent implements OnInit {
               this.isLoading = false;
             },
           })
-          // this.dataSource = this.dataSource.map(
-          //   element => element.id === editingCourse.id ? {...value, id: editingCourse.id} : element
-          // );
         }
       }
     });

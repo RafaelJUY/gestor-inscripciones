@@ -26,8 +26,6 @@ export class CourseDialogComponent {
       endDate: [],
     });
 
-    // console.log("Se esta editando", this.editingCourse);
-
     if(this.editingCourse){
       // Para que en el modal se muestre los datos del curso a modificar
       this.editingCourse = this.convertCourseToFormCourseValues(this.editingCourse);
@@ -48,14 +46,12 @@ export class CourseDialogComponent {
         name: course.name,
         startDate: course.startDate,
         endDate: course.endDate,
-        // lessons: course.lessons,
       };
     }
     return course;
   }
   onSubmit():void{ //Para cuando se de clic en guardar
     if(this.curseForm.valid){
-      // console.log(this.curseForm.value);
       this.matDialogRef.close(this.curseForm.value); //Para cerrar el modal, opcionalmente se puede enviar el valor del formulario.
     }else{
       alert("El courso no es valido")
