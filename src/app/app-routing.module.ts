@@ -12,12 +12,14 @@ import {StudentDetailComponent} from "./features/dashboard/students/components/s
 const routes: Routes = [
   {
     path: "auth",
-    component: LoginComponent,
+    // component: LoginComponent, //Se reemplaza
+    loadChildren: () => import("./features/auth/auth.module").then((reference) => reference.AuthModule),
   },
   {
     path: "dashboard",
     component: DashboardComponent,
-    children: [
+    loadChildren: () => import("./features/dashboard/dashboard.module").then((reference) => reference.DashboardModule),
+    /*children: [
       {
         path: "home",
         component: HomeComponent,
@@ -47,11 +49,11 @@ const routes: Routes = [
         path: "**",
         redirectTo: "/dashboard/home",
       }
-    ]
+    ]*/
   },
   {
     path: "**", //cualquier ruta que no coincida con las otras
-    redirectTo: "auth",
+    redirectTo: "auth/login",
     // component: //podemos poder un componente de error 404
   }
 ];

@@ -24,10 +24,10 @@ import {EnrollmentsModule} from "./enrollments/enrollments.module";
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    CoursesModule,
+    // CoursesModule,
     MatListModule,
-    StudentsModule,
-    EnrollmentsModule,
+    // StudentsModule,
+    // EnrollmentsModule,
   ]
 })
 export class DashboardModule { }

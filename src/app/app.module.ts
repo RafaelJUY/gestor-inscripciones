@@ -11,7 +11,12 @@ import {AuthModule} from "./features/auth/auth.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, DashboardModule, AuthModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    // DashboardModule,
+    // AuthModule
+  ],
   providers: [
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
