@@ -27,7 +27,8 @@ export class LessonService {
 
   addLesson(lesson : Lesson): Observable<Lesson[]>{
     this.MY_DATABASE.push(lesson);
-    return this.getAllLessons();
+    // return this.getAllLessons();
+    return this.getLessonByCourseId(lesson.idCourse);
   }
 
   deleteLesson(lesson: Lesson): Observable<Lesson[]> {
