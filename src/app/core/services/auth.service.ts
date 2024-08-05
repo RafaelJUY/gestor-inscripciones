@@ -1,18 +1,45 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {Router} from "@angular/router";
+import {IUser} from "../model/Users";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private FAKE_USER: IUser = {
+    email: 'fake@mail.com',
+    password: '123456',
+    role: 'ADMIN',
+  };
+  private VALID_TOKEN = 'lksfdjglfdkgjklfdkjgldfjisdhfjsdfsdk';
 
+  private _authUser$ = new BehaviorSubject<IUser | null>(null);
+  authUser$ = this._authUser$.asObservable();
   constructor(private router: Router) { }
 
-  login(){
-    localStorage.setItem("token", "kgjkjdkogjkdfgdfkgjdgjkdofg");
-    this.router.navigate(["dashboard","courses"]); //para ir desde login a dashboard/courses
-  };
+  login() {
+    localStorage.setItem('token', 'lksfdjglfdkgjklfdkjgldfjisdhfjsdfsdk');
+    this._authUser$.next(this.FAKE_USER);
+    localStorage.setItem('token', this.VALID_TOKEN);
+    this.router.navigate(['dashboard', 'courses']);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this._authUser$.next(null);
+    this.router.navigate(['auth', 'login']);
+  }
+
+  verifyToken(): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    const isValid = this.VALID_TOKEN === token;
+    if (isValid) {
+      this._authUser$.next(this.FAKE_USER);
+    }
+
+    return of(isValid);
+  }
 
 /*  async login(){
     // console.log("Ejecutando login real");

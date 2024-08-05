@@ -8,6 +8,7 @@ import {StudentsComponent} from "./features/dashboard/students/students.componen
 import {CourseDetailComponent} from "./features/dashboard/courses/components/course-detail/course-detail.component";
 import {HomeComponent} from "./features/dashboard/home/home.component";
 import {StudentDetailComponent} from "./features/dashboard/students/components/student-detail/student-detail.component";
+import {authGuard} from "./core/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
+    canActivate: [authGuard],
     loadChildren: () => import("./features/dashboard/dashboard.module").then((reference) => reference.DashboardModule),
     /*children: [
       {

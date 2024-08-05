@@ -6,6 +6,7 @@ import {CourseDetailComponent} from "./courses/components/course-detail/course-d
 import {StudentsComponent} from "./students/students.component";
 import {StudentDetailComponent} from "./students/components/student-detail/student-detail.component";
 import {EnrollmentsComponent} from "./enrollments/enrollments.component";
+import {adminGuard} from "../../core/guards/admin.guard";
 
 const routes: Routes = [
   //Ya estamos en /dashboard
@@ -16,6 +17,7 @@ const routes: Routes = [
   },
   {
     path: "courses",
+    canActivate: [adminGuard],
     loadChildren: () => import("./courses/courses.module").then((reference) => reference.CoursesModule),
     // component: CoursesComponent,
   },
