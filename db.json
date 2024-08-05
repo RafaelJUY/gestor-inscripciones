@@ -1,0 +1,15 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "Angular",
+      "price": 9999
+    },
+    {
+      "id": "df7c",
+      "name": "JS",
+      "price": 555
+    }
+  ],
+  "students": []
+}
