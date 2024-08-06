@@ -1,12 +1,12 @@
 export class Lesson{
-  private _idCourse: number;
+  private _idCourse: string;
   private _date: Date;
   private _topic: string;
   private _startTime: number;
   private _endTime: number;
 
 
-  constructor(idCourse: number, date: Date, topic: string, startTime: number, endTime: number) {
+  constructor(idCourse: string, date: Date, topic: string, startTime: number, endTime: number) {
     this._idCourse = idCourse;
     this._date = date;
     this._topic = topic;
@@ -14,11 +14,11 @@ export class Lesson{
     this._endTime = endTime;
   }
 
-  get idCourse(): number {
+  get idCourse(): string {
     return this._idCourse;
   }
 
-  set idCourse(value: number) {
+  set idCourse(value: string) {
     this._idCourse = value;
   }
 

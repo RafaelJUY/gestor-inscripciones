@@ -7,7 +7,7 @@ import {map, Observable} from "rxjs";
 })
 export class LessonService {
   private MY_DATABASE: Lesson[] = [
-    new Lesson(1, new Date, "Introducción", 10, 12),
+    new Lesson("1", new Date, "Introducción", 10, 12),
   ]
 
   getAllLessons(): Observable<Lesson[]>{
@@ -19,7 +19,7 @@ export class LessonService {
     })
   }
 
-  getLessonByCourseId(courseId: number): Observable<Lesson[]>{
+  getLessonByCourseId(courseId: string): Observable<Lesson[]>{
     return this.getAllLessons().pipe(
       map((allLessons) => allLessons.filter( (lesson) => lesson.idCourse === courseId))
     );

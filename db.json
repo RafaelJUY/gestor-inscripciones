@@ -1,14 +1,22 @@
 {
   "courses": [
     {
-      "id": 1,
-      "name": "Angular",
-      "price": 9999
+      "id": "df7c",
+      "name": "JS y Bootstrap",
+      "startDate": "2024-08-05T14:55:32.123Z",
+      "endDate": "2024-08-05T14:55:32.123Z"
     },
     {
-      "id": "df7c",
-      "name": "JS",
-      "price": 555
+      "id": "d83e",
+      "name": "Angular",
+      "startDate": "2024-08-06T03:00:00.000Z",
+      "endDate": "2024-08-13T03:00:00.000Z"
+    },
+    {
+      "id": "7788",
+      "name": "Python y Django",
+      "startDate": "2024-08-14T03:00:00.000Z",
+      "endDate": "2024-08-21T03:00:00.000Z"
     }
   ],
   "students": []

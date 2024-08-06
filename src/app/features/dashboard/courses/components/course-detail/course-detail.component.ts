@@ -14,7 +14,7 @@ import {LessonService} from "../../../../../core/services/lesson.service";
 })
 export class CourseDetailComponent implements OnInit{
   course$: Observable<ICourse | undefined>;
-  private courseId: number;
+  private courseId: string;
 
   displayedColumns: string[] = ['idCourse', 'date', 'topic', 'startTime', "endTime", "actions"];
   dataSource: Lesson[] = [];
@@ -27,7 +27,8 @@ export class CourseDetailComponent implements OnInit{
     private activatedRoute: ActivatedRoute, //para obtener acceso a la url y obtener el parametro
     private fb: FormBuilder,
   ) {
-    this.courseId = Number(this.activatedRoute.snapshot.params["id"]);//Colocar el mismo parametro "id" que se definio en app-routing module
+    // this.courseId = Number(this.activatedRoute.snapshot.params["id"]);//Colocar el mismo parametro "id" que se definio en app-routing module
+    this.courseId = this.activatedRoute.snapshot.params["id"];//Colocar el mismo parametro "id" que se definio en app-routing module
     this.course$ = this.coursesService.getCourseById(this.courseId);
 
     this.curseForm = this.fb.group({

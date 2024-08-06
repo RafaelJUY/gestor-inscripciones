@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {CourseDialogComponent} from "./components/course-dialog/course-dialog.component";
 import {ICourse} from "./model/ICourse";
 import {CoursesService} from "../../../core/services/courses.service";
+import {delay} from "rxjs";
 
 @Component({
   selector: 'app-courses',
@@ -26,7 +27,7 @@ export class CoursesComponent implements OnInit {
 
   loadCourses() {
     this.isLoading = true;
-    this.coursesService.getCourses().subscribe({
+    this.coursesService.getCourses().pipe(delay(700)).subscribe({
       next: (courses) => {
         this.dataSource = courses;
       },
@@ -42,8 +43,10 @@ export class CoursesComponent implements OnInit {
         if(value){
           this.isLoading = true;
 
-          this.coursesService.addCourses(value). subscribe({
-            next: (courses) => {this.dataSource = [...courses]},
+          this.coursesService.addCourses(value).pipe(delay(700)).subscribe({
+            // next: (courses) => {this.dataSource = [...courses]},
+            // next: () => {this.loadCourses()},
+            next: (course) => {this.dataSource = [...this.dataSource, course]},
             complete: () => {this.isLoading= false}
           })
         }
@@ -56,9 +59,16 @@ export class CoursesComponent implements OnInit {
       next: (value) => {
         if (!!value) {
           this.isLoading = true;
-          this.coursesService.editCourseById(editingCourse.id, value).subscribe({
-            next: (courses) => {
-              this.dataSource = [...courses];
+          this.coursesService.editCourseById(editingCourse.id, value).pipe(delay(700)).subscribe({
+            next: (modifiedCourse) => {
+              // this.dataSource = [...this.dataSource.filter((c) => c.id !== editingCourse.id), course];
+
+              // En el array dataSourse actualizo el curso modificado.
+              let index = this.dataSource.findIndex(course => course.id === editingCourse.id);
+              this.dataSource[index] = modifiedCourse;
+
+              //Para actualizar la tabla en la vista.
+              this.dataSource = [...this.dataSource];
             },
             complete: () => {
               this.isLoading = false;
@@ -69,12 +79,14 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  deleteCourseByID(id: number) {
+  deleteCourseByID(id: string) {
     if (confirm("Esta seguro de eliminar el curso?")) {
       this.isLoading = true;
-      this.coursesService.deleteCourseById(id).subscribe({
-        next: (courses) => {
-          this.dataSource = [...courses];
+      this.coursesService.deleteCourseById(id).pipe(delay(700)).subscribe({
+        next: (courseDeleted) => {
+          // Elimino el courso del dataSource
+          this.dataSource = this.dataSource.filter(course => course.id !== courseDeleted.id);
+          this.dataSource = [...this.dataSource];
         },
         complete: () => {
           this.isLoading = false;
