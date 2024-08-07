@@ -19,5 +19,47 @@
       "endDate": "2024-08-21T03:00:00.000Z"
     }
   ],
-  "students": []
+  "students": [],
+  "lessons": [
+    {
+      "id": "398d",
+      "idCourse": "d83e",
+      "date": "2024-08-07T03:00:00.000Z",
+      "topic": "bbb",
+      "startTime": "2",
+      "endTime": "3"
+    },
+    {
+      "id": "4667",
+      "idCourse": "d83e",
+      "date": "2024-08-20T03:00:00.000Z",
+      "topic": "cccc",
+      "startTime": "4",
+      "endTime": "5"
+    },
+    {
+      "id": "bea4",
+      "idCourse": "d83e",
+      "date": "2024-08-15T03:00:00.000Z",
+      "topic": "aaaa",
+      "startTime": "1",
+      "endTime": "2"
+    },
+    {
+      "id": "cb2c",
+      "idCourse": "d83e",
+      "date": "2024-08-14T03:00:00.000Z",
+      "topic": "ssss",
+      "startTime": "4",
+      "endTime": "5"
+    },
+    {
+      "id": "561c",
+      "idCourse": "7788",
+      "date": "2024-08-07T03:00:00.000Z",
+      "topic": "variables",
+      "startTime": "1",
+      "endTime": "2"
+    }
+  ]
 }

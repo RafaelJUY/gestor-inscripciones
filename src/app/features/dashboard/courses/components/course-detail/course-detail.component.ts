@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Lesson} from "../../model/Lesson";
 import {LessonService} from "../../../../../core/services/lesson.service";
+import {ILesson} from "../../model/ILesson";
 
 @Component({
   selector: 'app-course-detail',
@@ -17,7 +18,7 @@ export class CourseDetailComponent implements OnInit{
   private courseId: string;
 
   displayedColumns: string[] = ['idCourse', 'date', 'topic', 'startTime', "endTime", "actions"];
-  dataSource: Lesson[] = [];
+  dataSource: ILesson[] = [];
   isLoading: boolean = false; // para mostrar animación de carga
 
   curseForm: FormGroup;
@@ -47,7 +48,8 @@ export class CourseDetailComponent implements OnInit{
     this.isLoading = true;
     this.lessonService.getLessonByCourseId(this.courseId).subscribe({
       next: (lessons) => {
-        this.dataSource = lessons;
+        // this.dataSource = lessons;
+        this.dataSource = [...this.orderLessonByDate(lessons)];
       },
       complete: () => {
         this.isLoading = false;
@@ -58,17 +60,26 @@ export class CourseDetailComponent implements OnInit{
   onSubmit():void{ //Para cuando se de clic en guardar
     if(this.curseForm.valid){
       this.isLoading = true;
-      let lesson: Lesson = new Lesson(
+      /*let lesson: ILesson = new Lesson(
         this.courseId,
         this.curseForm.value["date"],
         this.curseForm.value["topic"],
         this.curseForm.value["startTime"],
-        this.curseForm.value["endTime"])
+        this.curseForm.value["endTime"])*/
+      let lesson: ILesson = {
+        idCourse: this.courseId,
+        date: this.curseForm.value["date"],
+        topic: this.curseForm.value["topic"],
+        startTime: this.curseForm.value["startTime"],
+        endTime: this.curseForm.value["endTime"]
+      }
 
       this.lessonService.addLesson(lesson).subscribe({
         next: lesson => {
-          lesson = this.orderLessonByDate(lesson);
-          this.dataSource = [...lesson]
+          /*lesson = this.orderLessonByDate(lesson);
+          this.dataSource = [...lesson]*/
+          this.dataSource.push(lesson);
+          this.dataSource = [...this.orderLessonByDate(this.dataSource)];
         },
         complete: () => {this.isLoading = false}
       })
@@ -79,15 +90,34 @@ export class CourseDetailComponent implements OnInit{
     }
   }
 
-  private orderLessonByDate(lesson:Lesson[]){
-    return lesson.sort((a, b) => a.date.getTime() - b.date.getTime());
+  private orderLessonByDate(lessons: ILesson[]): ILesson[] {
+    return lessons.sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateA - dateB;
+    });
   }
-  deleteLessonByCourseId(lesson: Lesson){
+  /*deleteLessonByCourseId(lesson: Lesson){
     if (confirm("Esta seguro de eliminar la lección?")) {
       this.isLoading = true;
+      console.log("id lesson a eliminar: ", lesson.id);
       this.lessonService.deleteLesson(lesson).subscribe({
         next: (lesson) => {
           this.dataSource = [...lesson];
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
+      })
+    }
+  }*/
+  deleteLesson(idLesson: string){
+    if (confirm("Esta seguro de eliminar la lección?")) {
+      this.isLoading = true;
+      this.lessonService.deleteLessonbyId(idLesson).subscribe({
+        next: (lessonDeleted) => {
+          // this.dataSource = [...lesson];
+          this.dataSource = [...this.dataSource.filter(lesson => lesson.id !== lessonDeleted.id)];
         },
         complete: () => {
           this.isLoading = false;

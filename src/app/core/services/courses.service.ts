@@ -9,11 +9,11 @@ import {environment} from "../../../environments/environment";
   providedIn:"root"
 })
 export class CoursesService {
-  private MY_DATABASE: ICourse[] = [
+  /*private MY_DATABASE: ICourse[] = [
     new Course("1", "Angular", new Date(), new Date()),
     new Course("2", "JS", new Date(), new Date()),
     new Course("3", "TS", new Date(), new Date())
-  ]
+  ]*/
 
   constructor(private httpClient: HttpClient) {
   }
