@@ -1,22 +1,22 @@
 import {IStudent} from "./IStudent";
 
 export class Student implements IStudent{
-  private _id: number;
+  private _id: string;
   private _firstName: string;
   private _lastName: string;
   private _email: string;
-  constructor(id: number, firstName: string, lastName: string, email: string) {
+  constructor(id: string, firstName: string, lastName: string, email: string) {
     this._id = id;
     this._firstName = firstName;
     this._lastName = lastName;
     this._email = email;
   }
 
-  get id(): number {
+  get id(): string {
     return this._id;
   }
 
-  set id(value: number) {
+  set id(value: string) {
     this._id = value;
   }
 

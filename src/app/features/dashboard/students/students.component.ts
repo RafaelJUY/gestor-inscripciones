@@ -37,9 +37,17 @@ export class StudentsComponent implements OnInit{
         if(value){
           this.isLoading = true;
           // value['id'] = this.nextID();
-          this.studentService.addStudents(value).subscribe({
+          /*this.studentService.addStudents(value).subscribe({
             next: (students) => {
               this.dataSource = [...students];
+            },
+            complete: () => {
+              this.isLoading = false;
+            }
+          })*/
+          this.studentService.addStudents(value).subscribe({
+            next: (student) => {
+              this.dataSource = [...this.dataSource, student];
             },
             complete: () => {
               this.isLoading = false;
@@ -64,9 +72,24 @@ export class StudentsComponent implements OnInit{
       next: (value) => {
         if(!!value){
           this.isLoading = true;
-          this.studentService.editStudentById(editingStudent.id, value).subscribe({
+          /*this.studentService.editStudentById(editingStudent.id, value).subscribe({
             next: (students) => {
               this.dataSource = [...students];
+            },
+            complete: () => {
+              this.isLoading = false;
+            },
+          })*/
+          this.studentService.editStudentById(editingStudent.id, value).subscribe({
+            next: (modifiedStudent) => {
+              // this.dataSource = [...student];
+
+              // En el array dataSourse actualizo el estudiante modificado.
+              let index = this.dataSource.findIndex(student => student.id === editingStudent.id);
+              this.dataSource[index] = modifiedStudent;
+
+              //Para actualizar la tabla en la vista.
+              this.dataSource = [...this.dataSource];
             },
             complete: () => {
               this.isLoading = false;
@@ -77,12 +100,13 @@ export class StudentsComponent implements OnInit{
     });
   }
 
-  deleteStudentByID(id: number){
+  deleteStudentByID(id: string){
     if(confirm("Esta seguro de eliminar el estudiente?")){
       this.isLoading = true;
       this.studentService.deleteStudentById(id).subscribe({
-        next: (students) => {
-          this.dataSource = [...students];
+        next: (studentsDeleted) => {
+          // this.dataSource = [...students];
+          this.dataSource = [...this.dataSource.filter(student => student.id !== studentsDeleted.id)];
         },
         complete: () => {
           this.isLoading = false;

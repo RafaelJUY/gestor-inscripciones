@@ -51,7 +51,13 @@ export class StudentDialogComponent {
 
   onSubmit():void{ //Cuando se de click en guardar
     if(this.studentForm.valid){
-      this.matDialogRef.close(this.studentForm.value); //Para cerrar el modal, opcionalmente se puede enviar el valor del formulario.
+      let student:IStudent = {
+        id: this.studentForm.value.id,
+        firstName: this.studentForm.value.firstName,
+        lastName: this.studentForm.value.lastName,
+        email: this.studentForm.value.email
+      }
+      this.matDialogRef.close(student); //Para cerrar el modal, opcionalmente se puede enviar el valor del formulario.
     }else{
       alert("El estudiante no es valido");
     }

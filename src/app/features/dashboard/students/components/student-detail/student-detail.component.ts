@@ -16,7 +16,8 @@ export class StudentDetailComponent {
     private studentService: StudentsService,
     private activatedRoute: ActivatedRoute
   ) {
-    let id: number = Number(this.activatedRoute.snapshot.params["id"]);
-    this.student$ = this.studentService.getCourseById(id);
+    // let id: number = Number(this.activatedRoute.snapshot.params["id"]);
+    let id: string = this.activatedRoute.snapshot.params["id"];
+    this.student$ = this.studentService.getStudentById(id);
   }
 }

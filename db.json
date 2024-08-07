@@ -19,7 +19,14 @@
       "endDate": "2024-08-21T03:00:00.000Z"
     }
   ],
-  "students": [],
+  "students": [
+    {
+      "id": "4ff0",
+      "firstName": "Rafael Enrique",
+      "lastName": "Cortez",
+      "email": "rafa@gmail.com"
+    }
+  ],
   "lessons": [
     {
       "id": "398d",
@@ -52,14 +59,6 @@
       "topic": "ssss",
       "startTime": "4",
       "endTime": "5"
-    },
-    {
-      "id": "561c",
-      "idCourse": "7788",
-      "date": "2024-08-07T03:00:00.000Z",
-      "topic": "variables",
-      "startTime": "1",
-      "endTime": "2"
     }
   ]
 }
