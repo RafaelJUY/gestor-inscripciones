@@ -10,7 +10,11 @@ import {APP_CONFIG} from "../../../core/injection-tokens";
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  constructor(private authServices: AuthService, private fb: FormBuilder, @Inject(APP_CONFIG) private appConfig: any) {
+  constructor(
+    private authServices: AuthService,
+    private fb: FormBuilder, @Inject(APP_CONFIG)
+    private appConfig: any
+  ) {
     console.log("app_config", appConfig); // se puede borrar junto con el @inject() appconfig.
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
