@@ -65,6 +65,14 @@
       "topic": "JDK",
       "startTime": "20",
       "endTime": "22"
+    },
+    {
+      "id": "e457",
+      "idCourse": "5c54",
+      "date": "2024-08-12T03:00:00.000Z",
+      "topic": "POO en Java",
+      "startTime": "19",
+      "endTime": "21"
     }
   ]
 }

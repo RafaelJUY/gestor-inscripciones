@@ -23,7 +23,7 @@ export class AuthService {
       }
     }).subscribe({
       next: (response) => {
-        if(!response.length){
+        if(!response.length || (response[0].email !== data.email || response[0].password !== data.password)){//Por alguna razon no basta con evaluar el !response.length
           alert("Email o Password invalido");
         }else {
           const authUser = response[0];
