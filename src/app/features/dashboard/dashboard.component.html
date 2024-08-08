@@ -17,11 +17,18 @@
 
     <!--Toolbar inicio-->
     <mat-toolbar>
-      <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>Panel de Administración</span>
-      <span class="example-spacer"></span>
+      <div class="flex justify-content-between w-full align-items-center">
+        <div>
+          <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Panel de Administración</span>
+          <span class="example-spacer"></span>
+        </div>
+        @if(authUser$ | async; as user){
+          <div>{{ user.firstName + " " + user.lastName }}</div>
+        }
+      </div>
     </mat-toolbar>
     <!--Toolbar fin-->
 

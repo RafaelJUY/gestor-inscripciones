@@ -34,10 +34,10 @@ import {APP_CONFIG} from "../../core/injection-tokens";
     ReactiveFormsModule
   ],
   providers: [
-    {
+    /*{
       provide: AuthService,
       useClass: AuthService,
-    },
+    },*/
     { //se puede borrar
       provide: APP_CONFIG,
       useValue: {

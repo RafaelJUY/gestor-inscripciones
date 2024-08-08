@@ -1,28 +1,50 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {Router} from "@angular/router";
-import {IUser} from "../model/Users";
+import {IUser} from "../model/IUsers";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private FAKE_USER: IUser = {
+  /*private FAKE_USER: IUser = {
     email: 'fake@mail.com',
     password: '123456',
     role: 'ADMIN',
-  };
+  };*/
   private VALID_TOKEN = 'lksfdjglfdkgjklfdkjgldfjisdhfjsdfsdk';
 
   private _authUser$ = new BehaviorSubject<IUser | null>(null);
   authUser$ = this._authUser$.asObservable();
-  constructor(private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
-  login() {
-    // localStorage.setItem('token', 'lksfdjglfdkgjklfdkjgldfjisdhfjsdfsdk');
-    this._authUser$.next(this.FAKE_USER);
+  login(data : {email: string, password: string}) {
+    /*this._authUser$.next(this.FAKE_USER);
     localStorage.setItem('token', this.VALID_TOKEN);
-    this.router.navigate(['dashboard', 'home']);
+    this.router.navigate(['dashboard', 'home']);*/
+
+    this.httpClient.get<IUser[]>(environment.apiUrl + "/users", {
+      params: {
+        email: data.email,
+        password: data.password,
+      }
+    }).subscribe({
+      next: (response) => {
+        if(!response.length){
+          alert("Email o Password invalido");
+        }else {
+          const authUser = response[0];
+          localStorage.setItem("token", authUser.token);
+          this._authUser$.next(authUser);
+          this.router.navigate(['dashboard', 'home']);
+        }
+      },
+      error: (error) => {
+        alert("Error al conectar con el servidor");
+      }
+    })
   }
 
   logout() {
@@ -32,47 +54,36 @@ export class AuthService {
   }
 
   verifyToken(): Observable<boolean> {
-    const token = localStorage.getItem('token');
+    /*const token = localStorage.getItem('token');
     const isValid = this.VALID_TOKEN === token;
     if (isValid) {
-      this._authUser$.next(this.FAKE_USER);
+      // this._authUser$.next(this.FAKE_USER);
     }
 
-    return of(isValid);
+    return of(isValid);*/
+
+    const token = localStorage.getItem('token');
+    if(!token){
+      return of(false);
+    }
+
+    return this.httpClient.get<IUser[]>(environment.apiUrl + "/users", {
+      params: {
+        token: token,
+      },
+    }).pipe(
+      map( (response) => {
+        if(!response.length){
+          return false;
+        }else {
+          const authUser = response[0];
+          localStorage.setItem("token", authUser.token);
+          this._authUser$.next(authUser);
+          return true;
+        }
+      } )
+    );
   }
-
-/*  async login(){
-    // console.log("Ejecutando login real");
-    console.log("START");
-    await this.obtenerUsuarioPromise()
-      // then para cuando la promesa se resuleve satisfactoriamente
-      .then((usuario) => {
-        console.log("USUARIO", usuario)
-      })
-      // cath para atrapar el error de la promesa
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(()=> {});
-    console.log("END");
-  }*/
-/*  async login(){
-    this.obtenerUsuarioObservable().subscribe({
-      // Se ejecuta cuando el observable emite un valor (sin errores). Es el equivalente del then en promesas.
-      next: usuario => {
-        console.log(usuario);
-      },
-      // Se ejecuta cuando el observable emite un error. Es equivalente al catch en promesas.
-      error: err => {
-        console.log("Ocurrio algo", err);
-      },
-      // Se ejecuta cuando el observable deja de emitir valores.
-      complete: () => {
-        console.log("El observable se completo, por ende no va a emitir mas valores.")
-      }
-    })
-  }*/
-
   verificarToken(){}
 
   obtenerUsuarioAutenticado(){}

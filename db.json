@@ -1,64 +1,70 @@
 {
+  "users": [
+    {
+      "id": "asds",
+      "firstName": "Rafael",
+      "lastName": "Cortez",
+      "email": "rafa@gmail.com",
+      "password": "123456",
+      "token": "asdawgadfakghjghjghj",
+      "role": "ADMIN"
+    },
+    {
+      "id": "hfgh",
+      "firstName": "Lautaro",
+      "lastName": "Gonzalez",
+      "email": "lau@gmail.com",
+      "password": "654321",
+      "token": "basjfdasjdajsdjoasod",
+      "role": "EMPLOYEE"
+    }
+  ],
   "courses": [
     {
-      "id": "df7c",
-      "name": "JS y Bootstrap",
-      "startDate": "2024-08-05T14:55:32.123Z",
-      "endDate": "2024-08-05T14:55:32.123Z"
-    },
-    {
-      "id": "d83e",
+      "id": "ce25",
       "name": "Angular",
-      "startDate": "2024-08-06T03:00:00.000Z",
-      "endDate": "2024-08-13T03:00:00.000Z"
+      "startDate": "2024-08-08T03:00:00.000Z",
+      "endDate": "2024-08-31T03:00:00.000Z"
     },
     {
-      "id": "7788",
-      "name": "Python y Django",
-      "startDate": "2024-08-14T03:00:00.000Z",
-      "endDate": "2024-08-21T03:00:00.000Z"
+      "id": "5c54",
+      "name": "Java y Spring Boot",
+      "startDate": "2024-08-08T03:00:00.000Z",
+      "endDate": "2024-08-29T03:00:00.000Z"
     }
   ],
   "students": [
     {
-      "id": "4ff0",
-      "firstName": "Rafael Enrique",
-      "lastName": "Cortez",
-      "email": "rafa@gmail.com"
+      "id": "6f96",
+      "firstName": "Mario",
+      "lastName": "Bustos",
+      "email": "mario@gmail.com"
     }
   ],
   "lessons": [
     {
-      "id": "398d",
-      "idCourse": "d83e",
-      "date": "2024-08-07T03:00:00.000Z",
-      "topic": "bbb",
-      "startTime": "2",
-      "endTime": "3"
+      "id": "f15c",
+      "idCourse": "ce25",
+      "date": "2024-08-10T03:00:00.000Z",
+      "topic": "Introducción a Angular",
+      "startTime": "10",
+      "endTime": "12"
     },
     {
-      "id": "4667",
-      "idCourse": "d83e",
-      "date": "2024-08-20T03:00:00.000Z",
-      "topic": "cccc",
-      "startTime": "4",
-      "endTime": "5"
+      "id": "fc36",
+      "idCourse": "ce25",
+      "date": "2024-08-11T03:00:00.000Z",
+      "topic": "Componentes en Angular",
+      "startTime": "10",
+      "endTime": "12"
     },
     {
-      "id": "bea4",
-      "idCourse": "d83e",
-      "date": "2024-08-15T03:00:00.000Z",
-      "topic": "aaaa",
-      "startTime": "1",
-      "endTime": "2"
-    },
-    {
-      "id": "cb2c",
-      "idCourse": "d83e",
-      "date": "2024-08-14T03:00:00.000Z",
-      "topic": "ssss",
-      "startTime": "4",
-      "endTime": "5"
+      "id": "505b",
+      "idCourse": "5c54",
+      "date": "2024-08-09T03:00:00.000Z",
+      "topic": "JDK",
+      "startTime": "20",
+      "endTime": "22"
     }
   ]
 }

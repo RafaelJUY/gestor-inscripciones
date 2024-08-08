@@ -19,7 +19,7 @@ export class LoginComponent {
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
-      role: ["ADMIN", [Validators.required]],
+      // role: ["ADMIN", [Validators.required]],
     })
   }
 
@@ -27,7 +27,11 @@ export class LoginComponent {
     if(this.loginForm.invalid){
       alert("El formulario no es valido!");
     }else{
-      this.authServices.login();
+      const data = {
+        email: this.loginForm.get("email")?.value,
+        password: this.loginForm.get("password")?.value,
+      }
+      this.authServices.login(data);
     }
   }
 }
