@@ -83,7 +83,7 @@ describe('LoginComponent', () => {
     expect(spyOnAlert).toBeTruthy();
   })
 
-  it("Al intentar iniciar sesión, si el formulario es invalido, se debe authServices.login", () => {
+  it("Al intentar iniciar sesión, si el formulario es valido, se debe llamar a authServices.login", () => {
     const loginForm = component.loginForm;
     loginForm.setValue({
       email: "fake@email.com",
