@@ -36,15 +36,6 @@ export class StudentsComponent implements OnInit{
       next: (value) => {
         if(value){
           this.isLoading = true;
-          // value['id'] = this.nextID();
-          /*this.studentService.addStudents(value).subscribe({
-            next: (students) => {
-              this.dataSource = [...students];
-            },
-            complete: () => {
-              this.isLoading = false;
-            }
-          })*/
           this.studentService.addStudents(value).subscribe({
             next: (student) => {
               this.dataSource = [...this.dataSource, student];
@@ -53,17 +44,9 @@ export class StudentsComponent implements OnInit{
               this.isLoading = false;
             }
           })
-          // this.dataSource = [...this.dataSource, value];
         }
 
       },
-
-      /*next: (value) => {
-        if(value){ // para evitar que se inserte una fila vacia al dar click en cancelar
-          value['id'] = this.nextID();
-          this.dataSource = [...this.dataSource, value];
-        }
-      },*/
     });
   }
 
@@ -72,18 +55,8 @@ export class StudentsComponent implements OnInit{
       next: (value) => {
         if(!!value){
           this.isLoading = true;
-          /*this.studentService.editStudentById(editingStudent.id, value).subscribe({
-            next: (students) => {
-              this.dataSource = [...students];
-            },
-            complete: () => {
-              this.isLoading = false;
-            },
-          })*/
           this.studentService.editStudentById(editingStudent.id, value).subscribe({
             next: (modifiedStudent) => {
-              // this.dataSource = [...student];
-
               // En el array dataSourse actualizo el estudiante modificado.
               let index = this.dataSource.findIndex(student => student.id === editingStudent.id);
               this.dataSource[index] = modifiedStudent;
@@ -105,7 +78,6 @@ export class StudentsComponent implements OnInit{
       this.isLoading = true;
       this.studentService.deleteStudentById(id).subscribe({
         next: (studentsDeleted) => {
-          // this.dataSource = [...students];
           this.dataSource = [...this.dataSource.filter(student => student.id !== studentsDeleted.id)];
         },
         complete: () => {

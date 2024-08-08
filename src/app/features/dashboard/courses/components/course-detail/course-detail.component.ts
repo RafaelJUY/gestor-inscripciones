@@ -28,7 +28,6 @@ export class CourseDetailComponent implements OnInit{
     private activatedRoute: ActivatedRoute, //para obtener acceso a la url y obtener el parametro
     private fb: FormBuilder,
   ) {
-    // this.courseId = Number(this.activatedRoute.snapshot.params["id"]);//Colocar el mismo parametro "id" que se definio en app-routing module
     this.courseId = this.activatedRoute.snapshot.params["id"];//Colocar el mismo parametro "id" que se definio en app-routing module
     this.course$ = this.coursesService.getCourseById(this.courseId);
 
@@ -46,9 +45,8 @@ export class CourseDetailComponent implements OnInit{
 
   loadLesson(){
     this.isLoading = true;
-    this.lessonService.getLessonByCourseId(this.courseId).subscribe({
+    this.lessonService.getAllLessonByCourseId(this.courseId).subscribe({
       next: (lessons) => {
-        // this.dataSource = lessons;
         this.dataSource = [...this.orderLessonByDate(lessons)];
       },
       complete: () => {
@@ -60,12 +58,6 @@ export class CourseDetailComponent implements OnInit{
   onSubmit():void{ //Para cuando se de clic en guardar
     if(this.curseForm.valid){
       this.isLoading = true;
-      /*let lesson: ILesson = new Lesson(
-        this.courseId,
-        this.curseForm.value["date"],
-        this.curseForm.value["topic"],
-        this.curseForm.value["startTime"],
-        this.curseForm.value["endTime"])*/
       let lesson: ILesson = {
         idCourse: this.courseId,
         date: this.curseForm.value["date"],
@@ -76,8 +68,6 @@ export class CourseDetailComponent implements OnInit{
 
       this.lessonService.addLesson(lesson).subscribe({
         next: lesson => {
-          /*lesson = this.orderLessonByDate(lesson);
-          this.dataSource = [...lesson]*/
           this.dataSource.push(lesson);
           this.dataSource = [...this.orderLessonByDate(this.dataSource)];
         },
@@ -97,21 +87,7 @@ export class CourseDetailComponent implements OnInit{
       return dateA - dateB;
     });
   }
-  /*deleteLessonByCourseId(lesson: Lesson){
-    if (confirm("Esta seguro de eliminar la lección?")) {
-      this.isLoading = true;
-      console.log("id lesson a eliminar: ", lesson.id);
-      this.lessonService.deleteLesson(lesson).subscribe({
-        next: (lesson) => {
-          this.dataSource = [...lesson];
-        },
-        complete: () => {
-          this.isLoading = false;
-        }
-      })
-    }
-  }*/
-  deleteLesson(idLesson: string){
+  deleteLessonById(idLesson: string){
     if (confirm("Esta seguro de eliminar la lección?")) {
       this.isLoading = true;
       this.lessonService.deleteLessonbyId(idLesson).subscribe({

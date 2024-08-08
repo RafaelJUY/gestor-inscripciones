@@ -11,8 +11,6 @@ import {delay} from "rxjs";
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent implements OnInit {
-  // nombreCurso: string = "";
-
   displayedColumns: string[] = ['id', 'name', 'startDate', 'endDate', "actions"];
   dataSource: ICourse[] = [];
 
@@ -44,8 +42,6 @@ export class CoursesComponent implements OnInit {
           this.isLoading = true;
 
           this.coursesService.addCourses(value).pipe(delay(700)).subscribe({
-            // next: (courses) => {this.dataSource = [...courses]},
-            // next: () => {this.loadCourses()},
             next: (course) => {this.dataSource = [...this.dataSource, course]},
             complete: () => {this.isLoading= false}
           })
@@ -61,8 +57,6 @@ export class CoursesComponent implements OnInit {
           this.isLoading = true;
           this.coursesService.editCourseById(editingCourse.id, value).pipe(delay(700)).subscribe({
             next: (modifiedCourse) => {
-              // this.dataSource = [...this.dataSource.filter((c) => c.id !== editingCourse.id), course];
-
               // En el array dataSourse actualizo el curso modificado.
               let index = this.dataSource.findIndex(course => course.id === editingCourse.id);
               this.dataSource[index] = modifiedCourse;
