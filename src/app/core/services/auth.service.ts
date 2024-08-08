@@ -19,10 +19,10 @@ export class AuthService {
   constructor(private router: Router) { }
 
   login() {
-    localStorage.setItem('token', 'lksfdjglfdkgjklfdkjgldfjisdhfjsdfsdk');
+    // localStorage.setItem('token', 'lksfdjglfdkgjklfdkjgldfjisdhfjsdfsdk');
     this._authUser$.next(this.FAKE_USER);
     localStorage.setItem('token', this.VALID_TOKEN);
-    this.router.navigate(['dashboard', 'courses']);
+    this.router.navigate(['dashboard', 'home']);
   }
 
   logout() {
