@@ -56,12 +56,6 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it("El campo 'email' debe ser requerido", () => {
-    const emailControl = component.loginForm.get("email");
-    emailControl?.setValue("");
-
-    expect(emailControl?.invalid).toBeTrue();
-  })*/
   it('El campo "email" debe ser requerido', () => {
     const emailControl = component.loginForm.get("email");
     emailControl?.setValue("");
@@ -69,38 +63,11 @@ describe('LoginComponent', () => {
   });
 
 
-  /*xit("El campo 'password' debe ser requerido", () => {
-    const passwordControl = component.loginForm.get("password");
-    passwordControl?.setValue("");
-
-    expect(passwordControl?.invalid).toBeTrue();
-  })*/
-
   it('El campo "password" debe ser requerido', () => {
     const passwordControl = component.loginForm.get("password");
     passwordControl?.setValue("");
     expect(passwordControl?.invalid).toBeTrue();
   });
-
-  // xit("El campo 'role' debe ser requerido", () => {
-  //   const roleControl = component.loginForm.get("role");
-  //   roleControl?.setValue("");
-  //
-  //   expect(roleControl?.invalid).toBeTrue();
-  // })
-
-  /*xit("Al intentar iniciar sesión, si el formulario no es invalido, se debe mostrar un alert", () => {
-    const loginForm = component.loginForm;
-    loginForm.setValue({
-      email: "",
-      password: "",
-      role: "",
-    })
-
-    const spyOnAlert = spyOn(window, "alert");
-    component.onSubmit();
-    expect(spyOnAlert).toBeTruthy();
-  })*/
 
   it('Al intentar iniciar sesión, si el formulario no es válido, se debe mostrar un alert', () => {
     const loginForm = component.loginForm;
@@ -114,20 +81,6 @@ describe('LoginComponent', () => {
     expect(spyOnAlert).toHaveBeenCalledWith("El formulario no es valido!");
   });
 
-  /*xit("Al intentar iniciar sesión, si el formulario es valido, se debe llamar a authServices.login", () => {
-    const loginForm = component.loginForm;
-    loginForm.setValue({
-      email: "fake@email.com",
-      password: "123456",
-      role: "ADMIN",
-    })
-
-    const spyOnLogin = spyOn( (component as any).authServices, "login" );
-    component.onSubmit();
-
-    expect(spyOnLogin).toHaveBeenCalled();
-  })*/
-
   it('Al intentar iniciar sesión, si el formulario es válido, se debe llamar a authServices.login', () => {
     const loginForm = component.loginForm;
     loginForm.setValue({
@@ -138,10 +91,6 @@ describe('LoginComponent', () => {
     component.onSubmit();
     expect(authServiceSpy.login).toHaveBeenCalledWith({ email: "fake@email.com", password: "123456" });
   });
-
-  /*xit('should create', () => {
-    expect(component).toBeTruthy();
-  });*/
 
   it('should create', () => {
     expect(component).toBeTruthy();

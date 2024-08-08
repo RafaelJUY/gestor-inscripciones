@@ -9,11 +9,6 @@ import {environment} from "../../../environments/environment";
   providedIn: 'root'
 })
 export class AuthService {
-  /*private FAKE_USER: IUser = {
-    email: 'fake@mail.com',
-    password: '123456',
-    role: 'ADMIN',
-  };*/
   private VALID_TOKEN = 'lksfdjglfdkgjklfdkjgldfjisdhfjsdfsdk';
 
   private _authUser$ = new BehaviorSubject<IUser | null>(null);
@@ -21,10 +16,6 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   login(data : {email: string, password: string}) {
-    /*this._authUser$.next(this.FAKE_USER);
-    localStorage.setItem('token', this.VALID_TOKEN);
-    this.router.navigate(['dashboard', 'home']);*/
-
     this.httpClient.get<IUser[]>(environment.apiUrl + "/users", {
       params: {
         email: data.email,
@@ -54,14 +45,6 @@ export class AuthService {
   }
 
   verifyToken(): Observable<boolean> {
-    /*const token = localStorage.getItem('token');
-    const isValid = this.VALID_TOKEN === token;
-    if (isValid) {
-      // this._authUser$.next(this.FAKE_USER);
-    }
-
-    return of(isValid);*/
-
     const token = localStorage.getItem('token');
     if(!token){
       return of(false);
