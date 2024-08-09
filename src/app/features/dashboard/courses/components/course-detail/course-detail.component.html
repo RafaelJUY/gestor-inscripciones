@@ -40,7 +40,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
 <!--  <button mat-button mat-dialog-close>Cancelar</button>-->
-  <button (click)="onSubmit()" mat-button>Guardar</button>
+  <button (click)="onSubmit()" mat-button mat-flat-button>Guardar</button>
 </mat-dialog-actions>
 
 
@@ -93,7 +93,7 @@
 <!--        <mat-icon>edit</mat-icon>-->
 <!--      </button>-->
 
-      <button (click)="deleteLessonById(element.id)" mat-icon-button>
+      <button (click)="deleteLessonById(element.id)" mat-icon-button matTooltip="Eliminar">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

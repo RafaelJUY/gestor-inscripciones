@@ -12,6 +12,7 @@ import { CoursesModule } from "./courses/courses.module";
 import { MatListModule } from '@angular/material/list';
 import { StudentsModule } from "./students/students.module";
 import {EnrollmentsModule} from "./enrollments/enrollments.module";
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -28,6 +29,7 @@ import {EnrollmentsModule} from "./enrollments/enrollments.module";
     MatListModule,
     // StudentsModule,
     // EnrollmentsModule,
+    MatTooltipModule,
   ]
 })
 export class DashboardModule { }

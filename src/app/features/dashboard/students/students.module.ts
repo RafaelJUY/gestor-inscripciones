@@ -15,6 +15,7 @@ import { MatIconModule } from "@angular/material/icon";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {SharedModule} from "../../../shared/shared.module";
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { StudentDetailComponent } from './components/student-detail/student-deta
     MatDatepickerModule,
     MatTableModule,
     SharedModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTooltipModule
   ]
 })
 export class StudentsModule { }

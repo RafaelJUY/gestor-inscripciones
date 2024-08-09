@@ -16,6 +16,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 import {SharedModule} from "../../../shared/shared.module";
 import {MatCardModule} from '@angular/material/card';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatCardModule} from '@angular/material/card';
     MatProgressBarModule,
     SharedModule,
     MatCardModule,
+    MatTooltipModule,
   ]
 })
 export class CoursesModule { }
